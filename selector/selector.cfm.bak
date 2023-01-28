@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<HTML>
+<META HTTP-EQUIV="Refresh" CONTENT="30; URL=http://PC-0001/webwheelz/">
+<HEAD>
+	<link rel="stylesheet" type="text/css" href="../WHEELZ.CSS">
+	<TITLE>WebWheelz Wheel Selector</TITLE>
+</HEAD>
+
+<BODY>
+<!--CFINCLUDE template="../toolbar.inc"--->
+<DIV class="nav">
+<A HREF="../index.cfm"><IMG SRC="../images/mainmenu.gif" border="0" height="66" width="66"></a>
+<IMG SRC="../images/selector.gif" border="0" height="66" width="66">
+</DIV>
+<DIV style="font-family: Trebuchet MS; font-size: 16pt; position: absolute; left: 250px; top: 200px; width: 524px; overflow: hidden; border: solid; background: white; padding: 20px">
+<H1>Wheel Selector instructions:</h1>
+<OL>
+	<LI>Choose your make and model of car.
+	<LI>If there is a 3D preview of your car, you can see what your car looks like with various wheels fitted.
+	<LI>Check the price and stock availability and order online: it's as simple as that!
+</OL>
+
+<P ALIGN="right"><A HREF="selector1.cfm">Continue...</a></P>
+</DIV>
+
+</BODY>
+</HTML>

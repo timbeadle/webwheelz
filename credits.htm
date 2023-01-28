@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Refresh" CONTENT="20; URL=http://PC-0001/webwheelz/default.htm">
+	<TITLE>WebWheelz Credits</TITLE>
+
+<script language="javascript">
+	//global variables
+	var layerRef="null",layerStyleRef="null",styleSwitch="null";
+	var topStopPoint=-700;
+	var backupTopStopPoint=topStopPoint;
+	var currTop=200;
+	var pxSwitch="null";
+
+function init(){
+	if (navigator.appName == "Netscape") {
+		layerStyleRef="layer.";
+		layerRef="document.layers";
+		styleSwitch="";
+		pxSwitch="";
+	}else{
+		layerStyleRef="layer.style.";
+		layerRef="document.all";
+		styleSwitch=".style";
+		pxSwitch="px";
+	}
+	moveLayerUp('credits');
+}
+
+function pause(layerName){
+	topStopPoint=currTop+pxSwitch;
+}
+
+function restart(layerName){
+	topStopPoint=backupTopStopPoint;
+	moveLayerUp(layerName);
+}
+
+function moveLayerUp(layerName){
+	if (eval(layerRef+'["'+layerName+'"]'+styleSwitch+'.top != topStopPoint')){
+			currTop-=4;
+			eval(layerRef+'["'+layerName+'"]'+styleSwitch+'.top = currTop');
+			setTimeout('moveLayerUp("'+layerName+'")',50);
+	}
+}
+
+function showLayer(layerName){
+eval(layerRef+'["'+layerName+'"]'+styleSwitch+'.visibility="visible"');
+}
+
+function hideLayer(layerName){
+	eval(layerRef+'["'+layerName+'"]'+styleSwitch+'.visibility="hidden"');
+} 
+
+
+</script>
+
+<STYLE TYPE="text/css">
+/*CREDITS LAYERS*/
+#creditsControls {z-index: 29100; position: absolute; background-color: black; top: 150; left: 450px; width: 250px;}
+#credits {font-family: verdana; z-index: 29000; position: absolute; top: 200; left: 150px; width: 600px; overflow: hidden;}
+
+/*User Interface Layers*/
+#uiTop {position: absolute;  visibility: visible; top: 0px; left: 0px; z-index: 79100; width: 1026; height: 150; overflow: hidden;}
+#uiBottom {position: absolute;  visibility: visible; top: 620px; left: 0px; z-index: 79101; width: 1026; height: 150; overflow: hidden;}
+#uiLeft {position: absolute;  visibility: visible; top: 150px; left: 0px; z-index: 79102; width: 150; height: 470; overflow: hidden;}
+#uiRight {position: absolute;  visibility: visible; top: 150px; left: 876px; z-index: 79103; width: 150; height: 470; overflow: hidden;}
+</STYLE>
+</HEAD>
+<body bgcolor="#ffcc00" text=black onLoad="init()">
+<!----------------------------CREDITS---------------------------------------->
+
+<!--background color-->
+
+<div id="uiTop">
+ 		<IMG SRC="images/uiTop.gif" WIDTH=1026 HEIGHT=150 BORDER=0>
+</div>
+<div id="uiBottom">
+ 		<IMG SRC="images/uiBottom.gif" WIDTH=1026 HEIGHT=150 BORDER=0>
+</div>
+<div id="uiLeft">
+ 		<IMG SRC="images/uiLeft.gif" WIDTH=150 HEIGHT=470 BORDER=0>
+</div>
+<div id="uiRight">
+ 		<IMG SRC="images/uiRight.gif" WIDTH=150 HEIGHT=470 BORDER=0>
+</div>
+
+<div id="pause" style="position: absolute; left: 815px; top: 150px; width: 100px">
+<a href="javascript:pause('credits');hideLayer('pause');showLayer('restart');">
+ <IMG SRC="images/pause.gif" WIDTH=100 HEIGHT=41 BORDER=0></a>
+</div>
+
+<div id="restart" style="position: absolute; left: 815px; top: 150px; width: 100px; visibility: hidden">
+<a href="javascript:restart('credits');hideLayer('restart');showLayer('pause');">
+<IMG SRC="images/continue.gif" WIDTH=100 HEIGHT=41 BORDER=0></a></div>
+
+<!--credits layer-->
+<DIV ID="credits">
+<H3>Tim Beadle : BSc Industrial Design : Major Project : WebWheelz Wheel Selection System</h3>
+
+<h4>Development, Production and Implementation</h4>
+<P align="right">Tim Beadle</P>
+
+<hr noshade>
+
+<h4>Technologies</h4>
+<h5>Programming Languages</h5>
+<UL>
+<li>HyperText Markup Language (HTML)</LI>
+<LI>Cold Fusion Markup Language (CFML)</LI>
+<LI>JavaScript</LI>
+<LI>Dynamic HTML</LI>
+</ul>
+
+<h5>Media Formats</h5>
+<ul>
+<li>Compuserve GIF89a images - 256 colour (8-bit colour depth)
+<li>Joint Photographic Expert Group (JPEG) images - 16 million colours (24-bit colour depth)
+<li>Shockwave Flash movies (scaleable 2D vector graphic animations)
+</ul>
+
+<hr noshade>
+
+<H4>Software</h4>
+<h5>Production</h5>
+<UL>
+<li>Adobe Photoshop</LI>
+<LI>Allaire Cold Fusion Studio</LI>
+<li>Autodesk 3D Studio
+<li>Kinetix 3D Studio Max</LI>
+<LI>Macromedia Dreamweaver</LI>
+<LI>Macromedia Fireworks</LI>
+<LI>Macromedia Flash</LI>
+</ul>
+<h5>Backend</h5>
+<ul>
+<li>Allaire Cold Fusion Application Server</li>
+<li>Microsoft Access</li>
+<li>Microsoft Personal Web Server</li>
+</ul>
+
+<hr noshade>
+
+<H4>Resources</h4>
+<ul>
+<li><I>Designing With JavaScript</i> by Nick Heinle (O'Reilly)</LI>
+<LI><I>Superfly</i> Dynamic HTML Demo from www.dhtmlzone.com</LI>
+<LI>Car brochures (many thanks to various dealerships) from:
+	<ul>
+		<li>Alfa Romeo
+		<li>Audi
+		<li>BMW
+		<li>Citroen
+		<li>Fiat
+		<li>Ford
+		<li>Honda
+		<li>Hyundai
+		<li>Lotus
+		<li>Mazda
+		<li>Mercedes-Benz
+		<li>Mitsubishi
+		<li>Nissan
+		<li>Peugeot
+		<li>Renault
+		<li>Rover
+		<li>Saab
+		<li>Suzuki
+		<li>Vauxhall
+		<li>Volkswagen
+		<li>Volvo
+	</ul>
+</ul>
+
+<hr noshade>
+
+</DIV>
+</BODY>
+</HTML>

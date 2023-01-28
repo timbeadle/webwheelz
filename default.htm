@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>	<link rel="stylesheet" type="text/css" href="wheelz.css">
+<META HTTP-EQUIV="Refresh" CONTENT="45; URL=http://PC-0001/webwheelz/default.htm">
+<TITLE>WebWheelz</TITLE>
+<SCRIPT language="JavaScript">
+<!--
+function stop_screen_saver(URL) {
+window.location = URL
+}
+//-->
+</script>
+</HEAD>
+<BODY bgcolor="#FFCC00">
+<DIV style="position: absolute; left: 112px; top: 150px">
+<!-- Aftershock splash.swf 3=800 4=450 9=14 -->
+<!-- URL's used in the movie-->
+<A HREF=index.cfm></A> 
+<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+ codebase="http://active.macromedia.com/flash2/cabs/swflash.cab#version=3,0,0,0"
+ ID=splash WIDTH=800 HEIGHT=450>
+  <PARAM NAME=movie VALUE="splash.swf"> 
+  <PARAM NAME=quality VALUE=autohigh> 
+  <PARAM NAME=bgcolor VALUE=#FFCC00> 
+<SCRIPT LANGUAGE=JavaScript>
+<!--
+var ShockMode = 0;
+if (navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"] && navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin) {
+	if (navigator.plugins && navigator.plugins["Shockwave Flash"])
+		ShockMode = 1;
+}
+if ( ShockMode ) {
+	document.write('<EMBED SRC="splash.swf"');
+	document.write(' swLiveConnect=FALSE WIDTH=800 HEIGHT=450');
+	document.write(' QUALITY=autohigh BGCOLOR=#FFCC00');
+	document.write(' TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">');
+	document.write('</EMBED>');
+} else if (!(navigator.appName && navigator.appName.indexOf("Netscape")>=0 && navigator.appVersion.indexOf("2.")>=0)){
+	document.write('<IMG SRC="splash.gif" WIDTH=800 HEIGHT=450 BORDER=0>');
+}
+//-->
+</SCRIPT><NOEMBED><IMG SRC="splash.gif" WIDTH=800 HEIGHT=450 BORDER=0></NOEMBED><NOSCRIPT><IMG SRC="splash.gif" WIDTH=800 HEIGHT=450 BORDER=0></NOSCRIPT></OBJECT><!-- EndAftershock splash.swf -->
+</DIV>
+</BODY>
+</HTML>

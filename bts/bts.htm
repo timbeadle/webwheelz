@@ -1,0 +1,377 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<HTML>
+<HEAD>
+	<TITLE>WebWheelz CFML Source Code</TITLE>
+<SCRIPT language="Javascript">
+<!--Hide me from old stuff
+function closeWin(window_name) {
+window.close(window_name);
+}
+//-->
+</script>
+</HEAD>
+
+<BODY onBlur="closeWin('bts');">
+
+<ul>
+	<li>Index
+		<ul>
+			<li><A href="#index">Index.cfm</a>
+		</ul>
+	</li>
+	<li>Wheel Selector
+		<ul>
+			<li><A HREF="#selector">Selector.cfm</A>
+			<li>Selector1.cfm
+			<li>Makes.inc
+			<li>Models.inc
+		</ul>
+	</LI>
+	<li>Search
+		<ul>
+			<li>Search.cfm
+			<li>Results.cfm
+			<li>Detail.cfm
+		</ul>
+	</LI>
+	<li>Credits
+		<ul>
+			<li><A href="#credits">Credits.cfm</A>
+		</ul>
+	</LI>
+</ul>
+
+<A HREF="#top"><IMG src="top.gif" align="left" border="0" vspace="4"></a><A name="index"><h2>Index.cfm</h2></a>
+
+<pre>
+&LTHTML&GT
+&LTHEAD&GT
+	&LTMETA HTTP-EQUIV="Refresh" CONTENT="180; URL=http://PC-0001/webwheelz/"&GT
+	&LTTITLE&GTWebWheelz Wheel Selector&LT/TITLE&GT
+	&LTlink rel="stylesheet" type="text/css" href="wheelz.css"&GT
+&LTCFSET todays_date=DateFormat(Now(), "YYYY-MM-DD")&GT
+
+&LTCFQUERY NAME="listwheels" datasource="wheels"&GT
+SELECT * FROM WHEELS
+	WHERE date = { d '#todays_date#'}
+ORDER BY manuf asc
+&LT/cfquery&GT
+
+&LTCFQUERY name="listcars" datasource="wheels"&GT
+SELECT * FROM CARS
+	WHERE wfmodel = 1
+&LT/cfquery&GT
+
+
+&LTscript language="Javascript"&GT
+&LT!--
+ if (document.images) {
+&LTCFOUTPUT query="listcars"&GT
+	img#ID#on = new Image();
+	img#ID#on.src = "selector/#make#/#model#on.jpg";
+&LT/CFOUTPUT&GT
+
+&LTCFOUTPUT query="listcars"&GT
+	img#ID#off = new Image();
+	img#ID#off.src = "selector/#make#/#model#.jpg";
+&LT/CFOUTPUT&GT
+
+&LTCFOUTPUT query="listcars"&GT
+	img#ID#hold = new Image();
+	img#ID#hold.src = "selector/#make#/#model#roll.gif";
+&LT/CFOUTPUT&GT
+}
+
+function imgAct(imgName) {
+	if (document.images) {
+		document[imgName].src = eval(imgName + "on.src");
+        document["holder"].src = eval(imgName + "hold.src");
+	}
+}
+
+function imgInact(imgName) {
+	if (document.images) {
+		document[imgName].src = eval(imgName + "off.src");
+&LTCFOUTPUT&GT
+		document["holder"].src = "images/indexblank.gif";
+&LT/CFOUTPUT&GT
+	}
+}
+
+// --&GT
+&LT/script&GT
+&LTscript language="Javascript"&GT
+&LT!--
+ if (document.images) {
+	img1on = new Image();
+	img1on.src = "images/enterselectoron.gif";
+	img2on = new Image();
+	img2on.src = "images/entersearchon.gif";
+	img3on = new Image();
+	img3on.src = "images/exiton.gif";
+
+	img1off = new Image();
+	img1off.src = "images/enterselector.gif";
+	img2off = new Image();
+	img2off.src = "images/entersearch.gif";
+	img3off = new Image();
+	img3off.src = "images/exit.gif";
+}
+
+function imgActtoo(imgName) {
+	if (document.images) {
+		document[imgName].src = eval(imgName + "on.src");
+	}
+}
+
+function imgInacttoo(imgName) {
+	if (document.images) {
+		document[imgName].src = eval(imgName + "off.src");
+	}
+}
+
+// --&GT
+&LT/script&GT
+
+&LT/HEAD&GT
+	
+&LTBODY&GT
+&LTDIV style="position: absolute; left: 400px; top: 140px; width: 500px; height: 600px; overflow: hidden"&GT
+&LTH1 class="red" style="font-family: Impact; font-size: 72pt"&GTWebWheelz&LT/h1&GT
+&LT/DIV&GT
+
+&LTCFIF #listwheels.RecordCount# GT 0&GT
+	&LTDIV style="background: white; border: solid; position: absolute; left: 150px; top: 550px; width: 400px; height: 100px; padding: 10px; overflow: auto"&GT
+		&LTDL&GT
+			&LTDT&GTThe following wheels have been added today:&LT/DT&GT
+			&LTCFOUTPUT query="listwheels"&GT
+				&LTDD style="font-family: Verdana; font-size: 10pt; font-style: normal"&GT#Manuf# #Model# #Size#&quot;&LT/DD&GT
+			&LT/cfoutput&GT
+		&LT/DL&GT
+&LT/DIV&GT
+&LT/cfif&GT
+
+&LTDIV ID="instructions" style="background: white; position: absolute; border: solid; left: 380px; top: 280px; width: 274px; height: 258px; overflow: auto; padding: 10px"&GT
+
+&LTP style="font-size: 12pt; font-weight: bold"&GTYou have three options:&LT/P&GT
+&LTol&GT
+&LTli&GTJump straight to the two cars which current have a 3D preview facility (left)
+&LTli&GTStep through the Wheel Selector, choosing the make and model of car which you own (right)
+&LTli&GTSearch the wheel catalogue for suitable wheels for your car.
+&LT/ol&GT
+&LT/DIV&GT
+
+&LTDIV style="background: #FF9900; border: solid; position: absolute; left: 150px; top: 150px; width: 200; padding: 10px"&GT
+
+&LTP align="center"&GT
+&LTB&GTJump to the cars with 3D Previews&LT/b&GT&LT/P&GT
+&LTP align="center"&GT
+&LTCFOUTPUT query="listcars"&GT
+&LTA HREF="selector/selector2.cfm?make=#make#&model=#model#" onMouseOver="imgAct('img#ID#')" onMouseOut="imgInact('img#ID#')"&GT&LTIMG name="img#ID#" SRC="selector/#make#/#model#.jpg" border="0" width="160" height="90" ALT="#make# #model#"&GT&LT/a&GT
+&LT/cfoutput&GT
+&LTIMG name="holder" src="images/indexblank.gif" width="120" height="120"&GT
+&LT/P&GT
+&LT/div&GT
+
+&LTDIV style="position: absolute; left: 684px; top: 280px; width: 231px; height: 300px"&GT
+&LTP align="right"&GT&LTA href="selector/selector.cfm" onMouseDown="imgActtoo('img1')" onMouseUp="imgInacttoo('img1')"&GT&LTimg name="img1" src="images/enterselector.gif" width="231" height="95" border="0"&GT&LT/a&GT
+&LTA HREF="search/search.cfm" onMouseDown="imgActtoo('img2')" onMouseUp="imgInacttoo('img2')"&GT&LTimg name="img2" src="images/entersearch.gif" width="231" height="95" border="0"&GT&LT/a&GT
+&LTA HREF="credits.htm" onMouseDown="imgActtoo('img3')" onMouseUp="imgInacttoo('img3')"&GT&LTimg name="img3" src="images/exit.gif" width="231" height="95" border="0"&GT&LT/a&GT&LT/P&GT
+&LT/DIV&GT
+&LT/BODY&GT
+&LT/html&GT
+</pre>
+
+
+<A HREF="#top"><IMG src="top.gif" align="left" border="0" vspace="4"></a><A name="selector"><h2>Selector.cfm</h2></a>
+<PRE>
+
+</pre>
+
+<A HREF="#top"><IMG src="top.gif" align="left" border="0" vspace="4"></a><A name="credits"><h2>Credits.htm</h2></a>
+<PRE>
+&LT!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"&GT
+
+&LTHTML&GT
+&LTHEAD&GT
+	&LTMETA HTTP-EQUIV="Refresh" CONTENT="20; URL=http://PC-0001/webwheelz/default.htm"&GT
+	&LTTITLE&GTWebWheelz Credits&LT/TITLE&GT
+
+&LTscript language="javascript"&GT
+	//global variables
+	var layerRef="null",layerStyleRef="null",styleSwitch="null";
+	var topStopPoint=-700;
+	var backupTopStopPoint=topStopPoint;
+	var currTop=200;
+	var pxSwitch="null";
+
+function init(){
+	if (navigator.appName == "Netscape") {
+		layerStyleRef="layer.";
+		layerRef="document.layers";
+		styleSwitch="";
+		pxSwitch="";
+	}else{
+		layerStyleRef="layer.style.";
+		layerRef="document.all";
+		styleSwitch=".style";
+		pxSwitch="px";
+	}
+	moveLayerUp('credits');
+}
+
+function pause(layerName){
+	topStopPoint=currTop+pxSwitch;
+}
+
+function restart(layerName){
+	topStopPoint=backupTopStopPoint;
+	moveLayerUp(layerName);
+}
+
+function moveLayerUp(layerName){
+	if (eval(layerRef+'["'+layerName+'"]'+styleSwitch+'.top != topStopPoint')){
+			currTop-=4;
+			eval(layerRef+'["'+layerName+'"]'+styleSwitch+'.top = currTop');
+			setTimeout('moveLayerUp("'+layerName+'")',50);
+	}
+}
+
+function showLayer(layerName){
+eval(layerRef+'["'+layerName+'"]'+styleSwitch+'.visibility="visible"');
+}
+
+function hideLayer(layerName){
+	eval(layerRef+'["'+layerName+'"]'+styleSwitch+'.visibility="hidden"');
+} 
+
+
+&LT/script&GT
+
+&LTSTYLE TYPE="text/css"&GT
+/*CREDITS LAYERS*/
+#creditsControls {z-index: 29100; position: absolute; background-color: black; top: 150; left: 450px; width: 250px;}
+#credits {font-family: verdana; z-index: 29000; position: absolute; top: 200; left: 150px; width: 600px; overflow: hidden;}
+
+/*User Interface Layers*/
+#uiTop {position: absolute;  visibility: visible; top: 0px; left: 0px; z-index: 79100; width: 1026; height: 150; overflow: hidden;}
+#uiBottom {position: absolute;  visibility: visible; top: 620px; left: 0px; z-index: 79101; width: 1026; height: 150; overflow: hidden;}
+#uiLeft {position: absolute;  visibility: visible; top: 150px; left: 0px; z-index: 79102; width: 150; height: 470; overflow: hidden;}
+#uiRight {position: absolute;  visibility: visible; top: 150px; left: 876px; z-index: 79103; width: 150; height: 470; overflow: hidden;}
+&LT/STYLE&GT
+&LT/HEAD&GT
+&LTbody bgcolor="#ffcc00" text=black onLoad="init()"&GT
+&LT!----------------------------CREDITS----------------------------------------&GT
+
+&LT!--background color--&GT
+
+&LTdiv id="uiTop"&GT
+ 		&LTIMG SRC="images/uiTop.gif" WIDTH=1026 HEIGHT=150 BORDER=0&GT
+&LT/div&GT
+&LTdiv id="uiBottom"&GT
+ 		&LTIMG SRC="images/uiBottom.gif" WIDTH=1026 HEIGHT=150 BORDER=0&GT
+&LT/div&GT
+&LTdiv id="uiLeft"&GT
+ 		&LTIMG SRC="images/uiLeft.gif" WIDTH=150 HEIGHT=470 BORDER=0&GT
+&LT/div&GT
+&LTdiv id="uiRight"&GT
+ 		&LTIMG SRC="images/uiRight.gif" WIDTH=150 HEIGHT=470 BORDER=0&GT
+&LT/div&GT
+
+&LTdiv id="pause" style="position: absolute; left: 815px; top: 150px; width: 100px"&GT
+&LTa href="javascript:pause('credits');hideLayer('pause');showLayer('restart');"&GT
+ &LTIMG SRC="images/pause.gif" WIDTH=100 HEIGHT=41 BORDER=0&GT&LT/a&GT
+&LT/div&GT
+
+&LTdiv id="restart" style="position: absolute; left: 815px; top: 150px; width: 100px; visibility: hidden"&GT
+&LTa href="javascript:restart('credits');hideLayer('restart');showLayer('pause');"&GT
+&LTIMG SRC="images/continue.gif" WIDTH=100 HEIGHT=41 BORDER=0&GT&LT/a&GT&LT/div&GT
+
+&LT!--credits layer--&GT
+&LTDIV ID="credits"&GT
+&LTH3&GTTim Beadle : BSc Industrial Design : Major Project : WebWheelz Wheel Selection System&LT/h3&GT
+
+&LTh4&GTDevelopment, Production and Implementation&LT/h4&GT
+&LTP align="right"&GTTim Beadle&LT/P&GT
+
+&LThr noshade&GT
+
+&LTh4&GTTechnologies&LT/h4&GT
+&LTh5&GTProgramming Languages&LT/h5&GT
+&LTUL&GT
+&LTli&GTHyperText Markup Language (HTML)&LT/LI&GT
+&LTLI&GTCold Fusion Markup Language (CFML)&LT/LI&GT
+&LTLI&GTJavaScript&LT/LI&GT
+&LTLI&GTDynamic HTML&LT/LI&GT
+&LT/ul&GT
+
+&LTh5&GTMedia Formats&LT/h5&GT
+&LTul&GT
+&LTli&GTCompuserve GIF89a images - 256 colour (8-bit colour depth)
+&LTli&GTJoint Photographic Expert Group (JPEG) images - 16 million colours (24-bit colour depth)
+&LTli&GTShockwave Flash movies (scaleable 2D vector graphic animations)
+&LT/ul&GT
+
+&LThr noshade&GT
+
+&LTH4&GTSoftware&LT/h4&GT
+&LTh5&GTProduction&LT/h5&GT
+&LTUL&GT
+&LTli&GTAdobe Photoshop&LT/LI&GT
+&LTLI&GTAllaire Cold Fusion Studio&LT/LI&GT
+&LTli&GTAutodesk 3D Studio
+&LTli&GTKinetix 3D Studio Max&LT/LI&GT
+&LTLI&GTMacromedia Dreamweaver&LT/LI&GT
+&LTLI&GTMacromedia Fireworks&LT/LI&GT
+&LTLI&GTMacromedia Flash&LT/LI&GT
+&LT/ul&GT
+&LTh5&GTBackend&LT/h5&GT
+&LTul&GT
+&LTli&GTAllaire Cold Fusion Application Server&LT/li&GT
+&LTli&GTMicrosoft Access&LT/li&GT
+&LTli&GTMicrosoft Personal Web Server&LT/li&GT
+&LT/ul&GT
+
+&LThr noshade&GT
+
+&LTH4&GTResources&LT/h4&GT
+&LTul&GT
+&LTli&GT&LTI&GTDesigning With JavaScript&LT/i&GT by Nick Heinle (O'Reilly)&LT/LI&GT
+&LTLI&GT&LTI&GTSuperfly&LT/i&GT Dynamic HTML Demo from www.dhtmlzone.com&LT/LI&GT
+&LTLI&GTCar brochures (many thanks to various dealerships) from:
+	&LTul&GT
+		&LTli&GTAlfa Romeo
+		&LTli&GTAudi
+		&LTli&GTBMW
+		&LTli&GTCitroen
+		&LTli&GTFiat
+		&LTli&GTFord
+		&LTli&GTHonda
+		&LTli&GTHyundai
+		&LTli&GTLotus
+		&LTli&GTMazda
+		&LTli&GTMercedes-Benz
+		&LTli&GTMitsubishi
+		&LTli&GTNissan
+		&LTli&GTPeugeot
+		&LTli&GTRenault
+		&LTli&GTRover
+		&LTli&GTSaab
+		&LTli&GTSuzuki
+		&LTli&GTVauxhall
+		&LTli&GTVolkswagen
+		&LTli&GTVolvo
+	&LT/ul&GT
+&LT/ul&GT
+
+&LThr noshade&GT
+
+&LT/DIV&GT
+&LT/BODY&GT
+&LT/HTML&GT
+
+</pre>
+
+</BODY>
+</HTML>

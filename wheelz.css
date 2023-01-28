@@ -1,0 +1,108 @@
+BODY {
+		font-family: Verdana;
+		font-size: 10pt;
+		cursor: auto;
+		background: #FFCC00;
+		background-image: url(images/wwbg.gif);
+		text-decoration: none;
+		text-align: justify;
+		margin-top: 0px;
+		margin-left: 12px;
+}
+
+A:LINK {
+		color: #990000;
+}
+
+A:VISITED {
+		color: #990000;
+}
+
+DT {
+		font-weight: bold;
+}
+
+TABLE {
+		font-family: monospace;
+		font-size: 10pt;
+}
+
+.on {
+		color: red;
+		text-decoration: underline;
+}
+
+.off {
+		color: black;
+		text-decoration: none;
+}
+
+.red {
+		color: #990000;
+}
+
+.choose {
+		position: absolute;
+		z-index: 300;
+		top: 172px;
+		width: 300px;
+		font-family: Verdana;
+		text-align: right;
+		font-style: bold;
+		font-size: 16pt;
+		color: 990000;
+}
+
+.nav {
+		font-family: Verdana;
+		font-size: 14pt;
+		position: absolute;
+		left: 815px;
+		top: 150px;
+		width: 100px;
+		z-index: 45;
+}
+
+.toolbar {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		height: 50px;
+		width: 1026px;
+		background: #000000;
+}
+
+.what {
+		font-family: impact;
+		font-size: 24pt;
+		position: absolute;
+		left: 101px;
+		top: 95px;
+}
+
+.car {
+		font-family: Trebuchet MS;
+		font-size: 72pt;
+		position: absolute;
+		left: 160px;
+		top: 70px;
+}
+
+.do {
+		font-family: impact;
+		font-size: 24pt;
+		position: absolute;
+		left: 272px;
+		top: 150px;
+}
+
+.comment {
+		width: 250px;
+}
+
+.title {
+		position: absolute;
+		left: 150px;
+		top: 150px;
+		width: 620px;
+}
